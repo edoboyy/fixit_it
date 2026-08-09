@@ -1,17 +1,46 @@
-# fixit_gh
+# Fixit GH
 
-A new Flutter project.
+A Flutter service marketplace app connecting customers with artisans across Ghana. Built with Flutter, Provider, and Supabase.
 
-## Getting Started
+## Live demo
 
-This project is a starting point for a Flutter application.
+After GitHub Pages is enabled, the app is hosted at:
 
-A few resources to get you started if this is your first Flutter project:
+- App: `https://edoboyy.github.io/fixit_it/`
+- Phone-frame demo page: `https://edoboyy.github.io/fixit_it/demo/`
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+## Portfolio embed
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+To show the app inside a phone frame on your portfolio site, copy the HTML/CSS block from:
+
+- `portfolio/embed-snippet.html`
+
+That snippet loads the hosted app in an iframe inside a mobile-style frame.
+
+## Deploy to GitHub Pages
+
+1. Push to the `main` branch.
+2. In GitHub, open **Settings → Pages**.
+3. Under **Build and deployment**, set **Source** to **GitHub Actions**.
+4. Wait for the `Deploy Flutter Web to GitHub Pages` workflow to finish.
+
+## Supabase setup for the live demo
+
+In your Supabase project, add these URLs:
+
+- **Authentication → URL configuration → Site URL:** `https://edoboyy.github.io/fixit_it/`
+- **Redirect URLs:** `https://edoboyy.github.io/fixit_it/**`
+
+Also run the SQL files in the Supabase SQL Editor:
+
+- `supabase/schema.sql`
+- `supabase/fix_rls.sql`
+
+## Local development
+
+```bash
+flutter pub get
+flutter run -d chrome
+```
+
+For Windows desktop builds with plugins, enable **Developer Mode** in Windows settings first.

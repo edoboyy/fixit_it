@@ -1,0 +1,65 @@
+<!--
+  Paste this block into your portfolio site where you want the demo to appear.
+  Replace the iframe src if you host the app somewhere other than GitHub Pages.
+-->
+
+<style>
+  .fixit-phone-wrap {
+    display: flex;
+    justify-content: center;
+    padding: 24px 0;
+  }
+
+  .fixit-phone {
+    position: relative;
+    width: min(100%, 300px);
+    aspect-ratio: 300 / 620;
+    padding: 11px;
+    border-radius: 38px;
+    background: linear-gradient(160deg, #2a3142 0%, #111827 100%);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+  }
+
+  .fixit-phone-screen {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 30px;
+    background: #000;
+  }
+
+  .fixit-phone-notch {
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 34%;
+    height: 22px;
+    background: #000;
+    border-radius: 0 0 16px 16px;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .fixit-phone iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background: #fff;
+  }
+</style>
+
+<div class="fixit-phone-wrap">
+  <div class="fixit-phone" aria-label="Fixit GH live demo">
+    <div class="fixit-phone-screen">
+      <div class="fixit-phone-notch"></div>
+      <iframe
+        src="https://edoboyy.github.io/fixit_it/"
+        title="Fixit GH live demo"
+        loading="lazy"
+        allow="clipboard-read; clipboard-write; fullscreen"
+      ></iframe>
+    </div>
+  </div>
+</div>
