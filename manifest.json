@@ -1,9 +1,9 @@
 {
-    "name": "EdoFix GH",
-    "short_name": "EdoFix",
+    "name": "Fixit GH",
+    "short_name": "FIXIT GH",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#F8F9FA",
+    "background_color": "#006B3F",
     "theme_color": "#006B3F",
     "description": "Fixit GH — connect with trusted artisans across Ghana.",
     "orientation": "portrait-primary",
