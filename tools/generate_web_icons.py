@@ -99,10 +99,10 @@ def main() -> None:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
 
     for name, size, maskable in (
-        ("Icon-192.png", 192, False),
-        ("Icon-512.png", 512, False),
-        ("Icon-maskable-192.png", 192, True),
-        ("Icon-maskable-512.png", 512, True),
+        ("fixit-gh-192.png", 192, False),
+        ("fixit-gh-512.png", 512, False),
+        ("fixit-gh-maskable-192.png", 192, True),
+        ("fixit-gh-maskable-512.png", 512, True),
     ):
         make_icon(size, maskable=maskable).save(OUT_DIR / name, "PNG")
 
