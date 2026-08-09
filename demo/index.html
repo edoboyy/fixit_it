@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fixit GH — Live Demo</title>
+  <meta name="description" content="Interactive demo of Fixit GH, a service marketplace app for Ghana.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b1020;
+      --bg-soft: #121933;
+      --text: #f5f7ff;
+      --muted: #9aa6cb;
+      --accent: #4f8cff;
+      --accent-2: #22c55e;
+      --phone-border: #1f2937;
+      --phone-shadow: rgba(0, 0, 0, 0.45);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, system-ui, -apple-system, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(79, 140, 255, 0.18), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(34, 197, 94, 0.12), transparent 24%),
+        linear-gradient(180deg, var(--bg) 0%, #070b16 100%);
+    }
+
+    .page {
+      width: min(1200px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 48px 0 64px;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .copy h1 {
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      line-height: 1.05;
+      margin: 0 0 16px;
+      letter-spacing: -0.03em;
+    }
+
+    .copy p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      max-width: 38rem;
+      margin: 0 0 24px;
+    }
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+
+    .badge {
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .button {
+      appearance: none;
+      border: 0;
+      border-radius: 12px;
+      padding: 12px 18px;
+      font: inherit;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.15s ease, opacity 0.15s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+    }
+
+    .button-primary {
+      background: linear-gradient(135deg, var(--accent), #7c5cff);
+      color: white;
+    }
+
+    .button-secondary {
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .phone-stage {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 24px 0;
+    }
+
+    .phone-shell {
+      position: relative;
+      width: min(100%, 320px);
+      aspect-ratio: 320 / 660;
+      padding: 12px;
+      border-radius: 42px;
+      background: linear-gradient(160deg, #2a3142 0%, #111827 100%);
+      box-shadow:
+        0 30px 80px var(--phone-shadow),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+    }
+
+    .phone-shell::before,
+    .phone-shell::after {
+      content: "";
+      position: absolute;
+      background: #0f172a;
+      border-radius: 999px;
+      z-index: 2;
+    }
+
+    .phone-shell::before {
+      top: 118px;
+      left: -3px;
+      width: 3px;
+      height: 54px;
+    }
+
+    .phone-shell::after {
+      top: 188px;
+      right: -3px;
+      width: 3px;
+      height: 78px;
+    }
+
+    .phone-screen-wrap {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      border-radius: 32px;
+      background: #000;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .phone-notch {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 34%;
+      height: 24px;
+      background: #000;
+      border-radius: 0 0 18px 18px;
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    .phone-status {
+      position: absolute;
+      top: 14px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 18px;
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.72);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .phone-iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      background: #fff;
+    }
+
+    .hint {
+      margin-top: 18px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 900px) {
+      .page {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        padding-top: 28px;
+      }
+
+      .copy {
+        text-align: center;
+      }
+
+      .badges,
+      .actions {
+        justify-content: center;
+      }
+
+      .copy p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="copy">
+      <div class="badges">
+        <span class="badge">Flutter</span>
+        <span class="badge">Supabase</span>
+        <span class="badge">Interactive demo</span>
+      </div>
+      <h1>Fixit GH</h1>
+      <p>
+        A service marketplace app connecting customers with artisans across Ghana.
+        Tap through the live demo in the phone preview — register, browse artisans,
+        and explore the booking flow.
+      </p>
+      <div class="actions">
+        <a class="button button-primary" href="../index.html" target="_blank" rel="noopener noreferrer">
+          Open full screen
+        </a>
+        <a class="button button-secondary" href="https://github.com/edoboyy/fixit_it" target="_blank" rel="noopener noreferrer">
+          View source
+        </a>
+      </div>
+    </section>
+
+    <section class="phone-stage">
+      <div>
+        <div class="phone-shell" aria-label="Fixit GH app preview in phone frame">
+          <div class="phone-screen-wrap">
+            <div class="phone-status">
+              <span>9:41</span>
+              <span>LTE</span>
+            </div>
+            <div class="phone-notch"></div>
+            <iframe
+              class="phone-iframe"
+              src="../index.html"
+              title="Fixit GH interactive demo"
+              loading="lazy"
+              allow="clipboard-read; clipboard-write; fullscreen"
+            ></iframe>
+          </div>
+        </div>
+        <p class="hint">Scroll and interact inside the phone preview.</p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
