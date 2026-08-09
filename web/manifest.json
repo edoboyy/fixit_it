@@ -1,11 +1,11 @@
 {
-    "name": "fixit_gh",
-    "short_name": "fixit_gh",
+    "name": "EdoFix GH",
+    "short_name": "EdoFix",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#F8F9FA",
+    "theme_color": "#006B3F",
+    "description": "Fixit GH — connect with trusted artisans across Ghana.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
